@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
 const { body, validationResult } = require('express-validator');
-
+MONGODB_URI=mongodb+srv://vaibhavgujite:vaibhavgujite@cluster0.yiz6r0t.mongodb.net/?retryWrites=true&w=majority&appName=abhay
 const app = express();
 
 // Updated CORS configuration
