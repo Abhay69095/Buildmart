@@ -6,8 +6,18 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
 const { body, validationResult } = require('express-validator');
-MONGODB_URI=mongodb+srv://vaibhavgujite:vaibhavgujite@cluster0.yiz6r0t.mongodb.net/?retryWrites=true&w=majority&appName=abhay
 const app = express();
+require('dotenv').config();
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('Connected to MongoDB');
+}).catch((err) => {
+  console.error('MongoDB connection error:', err);
+});
 
 // Updated CORS configuration
 app.use(cors({
