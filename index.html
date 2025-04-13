@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildMart Construction Materials</title>
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>BuildMart</h1>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li id="adminPanelLink" style="display:none;"><a href="/admin/admin.html">Admin Panel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&q=80" alt="Modern Construction">
+                    <div class="slide-content">
+                        <h2>Premier Construction Materials</h2>
+                        <p>Building Tomorrow's Foundation Today</p>
+                        <a href="#products" class="cta-button">Explore Products</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1591955506264-3f5a6834570a?auto=format&fit=crop&q=80" alt="Cement Products">
+                    <div class="slide-content">
+                        <h2>Quality Cement Products</h2>
+                        <p>Superior Strength for Every Project</p>
+                        <a href="#products" class="cta-button">View Cement Range</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80" alt="Construction Materials">
+                    <div class="slide-content">
+                        <h2>Complete Material Solutions</h2>
+                        <p>One-Stop Shop for All Construction Needs</p>
+                        <a href="#contact" class="cta-button">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="slider-dots"></div>
+        </div>
+
+    </section>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-categories">
+            <!-- Products will be dynamically loaded here -->
+            <div class="loading-placeholder">
+                Loading products...
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Product Gallery</h2>
+        <div class="gallery-grid">
+            <!-- Products will be dynamically loaded here -->
+            <div class="loading-placeholder">Loading gallery...</div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe" class="testimonial-img">
+                    <div class="testimonial-info">
+                        <h3>John Doe</h3>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+                <p>"Excellent quality materials and professional service. Would highly recommend!"</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    What are your delivery times?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We typically deliver within 24-48 hours of order confirmation for local areas. For bulk orders and remote locations, please contact us for specific delivery timelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter">
+        <div class="newsletter-container">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for latest updates and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="about">
+    <h2>About BuildMart</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <h3>25+ Years of Excellence</h3>
+            <p>Established in 1998, BuildMart has been serving contractors, builders, and homeowners with premium construction materials. Our commitment to quality and reliability has made us the preferred supplier in the region.</p>
+            
+            <div class="about-features">
+                <div class="feature-item">
+                    <i class="fas fa-medal feature-icon"></i>
+                    <span>Premium Quality Materials</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tags feature-icon"></i>
+                    <span>Competitive Pricing</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-truck feature-icon"></i>
+                    <span>Timely Delivery</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-comments feature-icon"></i>
+                    <span>Expert Consultation</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-stats">
+            <div class="stat-item">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support Available</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Visit Our Store</h3>
+                <p>123 Construction Avenue</p>
+                <p>Building District, City 12345</p>
+                <h3>Delivery Information</h3>
+                <p>Free delivery within 20km radius</p>
+                <p>Minimum order quantity applies</p>
+                <div id="map" class="store-map"></div>
+            </div>
+            <form class="inquiry-form">
+                <h3>Contact Form</h3>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea placeholder="Product Details & Quantity Required" required></textarea>
+                <button type="submit">Send Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About BuildMart</h3>
+                    <p>Your trusted partner in construction materials since 1998. Quality products, expert service, timely delivery.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Construction Avenue</li>
+                        <li><i class="fas fa-phone"></i> +91 123-456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@buildmart.com</li>
+                        <li><i class="fas fa-clock"></i> Time: 9:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="payment-methods">
+                        <p>Accepted Payments</p>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-google-pay"></i>
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BuildMart Construction Materials. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-title"></div>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- Auth Modals -->
+    <div id="loginModal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm" class="auth-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <p class="switch-form">Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm" class="auth-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+                <p class="switch-form">Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
