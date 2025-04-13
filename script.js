@@ -1,3 +1,5 @@
+import config from './config.js';
+
 // Add at the beginning of the file
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('nav');
@@ -68,7 +70,7 @@ document.querySelector('.inquiry-form').addEventListener('submit', async functio
 
     try {
         showLoading();
-        const response = await fetch('http://localhost:3000/api/contact', {
+        const response = await fetch(`${config.API_URL}/contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -366,7 +368,7 @@ async function apiRequest(endpoint, options = {}) {
     try {
         const token = localStorage.getItem('token');
         
-        const response = await fetch(`http://localhost:3000/api${endpoint}`, {
+        const response = await fetch(`${config.API_URL}${endpoint}`, {
             ...options,
             credentials: 'include',
             headers: {
@@ -415,7 +417,7 @@ const tokenManager = {
     
     async refreshToken() {
         try {
-            const response = await fetch('http://localhost:3000/api/refresh-token', {
+            const response = await fetch(`${config.API_URL}/refresh-token`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -498,7 +500,7 @@ async function login(email, password) {
     try {
         console.log('Attempting login for:', email);
         
-        const response = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch(`${config.API_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -529,7 +531,7 @@ async function login(email, password) {
 // Updated register function
 async function register(name, email, password) {
     try {
-        const response = await fetch('http://localhost:3000/api/register', {
+        const response = await fetch(`${config.API_URL}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -810,7 +812,7 @@ async function handleLogout() {
         showLoading();
         
         // Call logout API endpoint
-        await fetch('http://localhost:3000/api/logout', {
+        await fetch(`${config.API_URL}/logout`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -878,7 +880,7 @@ async function loadProducts() {
         showLoading();
         console.log('Fetching products...');
         
-        const response = await fetch('http://localhost:3000/api/products', {
+        const response = await fetch(`${config.API_URL}/products`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -1359,7 +1361,7 @@ function showSignupModal() {
 // Update gallery with product images
 async function updateGallery() {
     try {
-        const products = await fetch('http://localhost:3000/api/products').then(res => res.json());
+        const products = await fetch(`${config.API_URL}/products`).then(res => res.json());
         const galleryGrid = document.querySelector('.gallery-grid');
         
         if (!galleryGrid) return;
@@ -1593,7 +1595,7 @@ async function handleLogout() {
         showLoading();
         
         // Call logout API endpoint
-        await fetch('http://localhost:3000/api/logout', {
+        await fetch(`${config.API_URL}/logout`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -1758,3 +1760,46 @@ window.goToAdmin = async function() {
 
 // Only one showAdminPanel function - removed duplicate
 // ... existing code ...
+
+// Add API URL configuration
+const API_BASE_URL = 'https://buildmart-api.onrender.com/api';
+
+// Update all fetch calls to use API_BASE_URL
+async function loadProducts() {
+    try {
+        showLoading();
+        console.log('Fetching products...');
+        
+        const response = await fetch(`${API_BASE_URL}/products`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const products = await response.json();
+        console.log('Products received:', products);
+        
+        if (!Array.isArray(products)) {
+            console.error('Invalid products data:', products);
+            throw new Error('Invalid products data received');
+        }
+        
+        const categorizedProducts = groupByCategory(products);
+        displayProducts(categorizedProducts);
+    } catch (error) {
+        console.error('Error loading products:', error);
+        handleProductLoadError();
+    } finally {
+        hideLoading();
+    }
+}
+
+// Update other fetch calls similarly
+// ...existing code...
