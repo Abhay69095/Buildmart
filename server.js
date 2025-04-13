@@ -6,7 +6,12 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
 const { body, validationResult } = require('express-validator');
+
 const app = express();
+
+require('dotenv').config();
+const mongoose = require('mongoose');
+
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -58,33 +63,23 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin', 'admin.html'));
 });
 
-// Updated MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
-    socketTimeoutMS: 45000,
-    family: 4
-})
-.then(() => {
-    console.log('Successfully connected to MongoDB Atlas');
-})
-.catch(err => {
-    console.error('MongoDB Atlas connection error:', err);
-    process.exit(1);
-});
+// MongoDB connection with error handling
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log('Connected to MongoDB Atlas');
+    })
+    .catch(err => {
+        console.error('MongoDB connection error:', err);
+        process.exit(1);
+    });
 
-// Add MongoDB connection event handlers
-mongoose.connection.on('error', (err) => {
-    console.error('MongoDB error:', err);
+// Add error handlers for MongoDB connection
+mongoose.connection.on('error', err => {
+    console.error('MongoDB connection error:', err);
 });
 
 mongoose.connection.on('disconnected', () => {
-    console.log('MongoDB disconnected');
-});
-
-mongoose.connection.on('reconnected', () => {
-    console.log('MongoDB reconnected');
+    console.warn('MongoDB disconnected. Attempting to reconnect...');
 });
 
 // Models
